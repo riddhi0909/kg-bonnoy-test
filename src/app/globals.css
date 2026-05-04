@@ -1,0 +1,425 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-bonnot-serif), ui-serif, Georgia, serif;
+  --font-jakarta: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;  
+}
+
+/* Product strip: no native scrollbar (custom track + arrows only). */
+.strip-hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.strip-hide-scrollbar::-webkit-scrollbar {
+  
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+/* Hero scroll animation — performance and reduced motion */
+.hero-section {
+  backface-visibility: hidden;
+}
+
+/* When hero is pinned (position: fixed), ensure full width centering */
+.hero-section[style*="fixed"] {
+  left: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+.hero-col {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.hero-col-outer {
+  transform-origin: center center;
+}
+
+.hero-col-inner {
+  transform-origin: center center;
+}
+
+.hero-center-image {
+  will-change: transform, width, height;
+  transform-origin: center center;
+}
+
+.hero-center-video-frame {
+  overflow: hidden;
+}
+
+.hero-center-video-embed {
+  backface-visibility: hidden;
+  max-width: none;
+  will-change: width;
+  transform: translateZ(0);
+}
+
+.hero-center-overlay {
+  will-change: opacity, transform;
+}
+
+.hero-center-mux-video,
+.hero-center-video-embed mux-video,
+.hero-center-video-embed video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  --media-object-fit: cover;
+  --media-object-position: center;
+}
+
+.hero-center-mux-video {
+  object-fit: cover;
+  --media-object-fit: cover;
+  --media-object-position: center center;
+}
+
+.hero-center-mux-video::part(video),
+.hero-center-video-embed mux-video::part(video),
+.hero-center-video-embed video {
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.0);
+  transform-origin: center center;
+}
+
+.hero-center-video-embed iframe {
+  display: block;
+}
+
+.hero-text {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section,
+  .hero-col,
+  .hero-center-image,
+  .hero-center-video-frame,
+  .hero-center-overlay,
+  .hero-text {
+    will-change: auto;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+
+@media (max-width: 767px) {
+  /* Full-width hero: grid uses the whole section width (gutters from Tailwind px-* on the section). */
+  .hero-responsive {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr) minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    overflow: hidden;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    box-sizing: border-box;
+  }
+
+  .hero-col-left-outer,
+  .hero-col-right-outer {
+    display: none;
+  }
+
+  .hero-col-left-inner {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .hero-col-middle {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    min-width: 0;
+  }
+
+  .hero-col-right-inner {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .hero-col-middle .hero-text a {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .hero-col-middle > div:first-child {
+    min-height: auto;
+  }
+
+  .hero-col-middle h1 {
+    font-size: 23px;
+    line-height: 1.05;
+  }
+}
+@media (max-width: 575px) { 
+  .hero-col-middle h1 {
+    font-size: 18px;
+  }
+  .hero-col-middle .hero-text a {
+    justify-content: space-around;
+    gap: 4px;
+    padding: 0 7px;
+    font-size: 11px;
+  }
+    
+}
+
+
+/* GSAP pin-spacer - full width for proper centering */
+.pin-spacer {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Reduce gaps on smaller desktop screens (1440-1700px) where content is tight */
+@media (min-width: 1440px) and (max-width: 1700px) {
+  .hero-section {
+    gap: 30px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
+}
+
+
+.kg-newsletter-btn {
+  width: fit-content;
+}
+
+
+#bonnot-mobile-nav {
+  top: 75px;
+  z-index: 1;
+} 
+
+
+.kg-home-stories-grid button.kg-image-card::after {
+  content: "";
+  background: linear-gradient(180deg, rgba(0, 17, 34, 0) 0%, #001122ab 100%);
+  position: absolute;
+  inset: 0;
+}
+
+
+.kg-home-stories-grid .kg-image-middle-card {
+  margin: 48px 0 0;
+  gap: 90px;
+} 
+
+
+.kg-category-popup-wrapper .kg-category-popup  {
+  /* background-color: rgb(0 0 0 / 10%); */
+  /* backdrop-filter: blur(4px); */
+  background-color: rgb(0 17 34 / 10%);
+  /* backdrop-filter: blur(20px) */
+
+
+}
+
+.kg-product-image-wrapper{
+  border-color: #00112233;
+}
+.kg-product-image-wrapper .kg-product-image-dots{
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+.kg-product-image-wrapper .kg-product-video-dot{
+  position: absolute; 
+  top: 5px;
+  left: 5px;
+}
+
+.kg-product-image-wrapper .kg-product-image-dots{
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+.kg-product-image-wrapper .kg-product-video-dot{
+  position: absolute; 
+  top: 5px;
+  left: 5px;
+}
+
+
+/*  mira */
+.kg-title-h2 em {
+  font-style: italic;
+  font-size: 28px;
+}
+
+.kg-title-h2 span {
+  text-transform: uppercase;
+  font-size: 21px;
+}
+
+@media (max-width: 767px) {
+  .kg-title-h2 em {
+      font-size: 21px;
+  }
+
+  .kg-title-h2 span {
+      font-size: 17px;
+  }
+}
+
+/* In-app route transitions / loading UI — thin bar (BonnotSiteTopProgressBar / NavigationRouteProgress). */
+@keyframes bonnot-nav-route-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+.bonnot-nav-route-progress-bar {
+  animation: bonnot-nav-route-progress 1.1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bonnot-nav-route-progress-bar {
+    animation: none;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.85;
+  }
+}
+
+/* Category reviews: dual-column vertical marquees (opposite directions). */
+@keyframes bonnot-testimonials-marquee-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes bonnot-testimonials-marquee-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.bonnot-testimonials-marquee-column {
+  min-height: 0;
+}
+
+/* Slightly higher specificity than Tailwind utilities that might touch transform. */
+.bonnot-testimonials-marquee-track.bonnot-testimonials-marquee-up {
+  animation: bonnot-testimonials-marquee-up 20s linear infinite;
+  will-change: transform;
+}
+
+.bonnot-testimonials-marquee-track.bonnot-testimonials-marquee-down {
+  animation: bonnot-testimonials-marquee-down 20s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bonnot-testimonials-marquee-track.bonnot-testimonials-marquee-up,
+  .bonnot-testimonials-marquee-track.bonnot-testimonials-marquee-down {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-appointment-modal-icon .footer-appointment-modal-icon-img {
+    filter: invert();
+    object-fit: contain;
+    background-color: #fff2d6;
+    width: 29px;
+    height: 29px;
+    padding: 5px;
+    max-width: unset;
+  }
+
+  /* Réalisations slider: hide horizontal scrollbar track if Swiper exposes it */
+  .you-will-also-enjoy-swiper.swiper-horizontal {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .you-will-also-enjoy-swiper.swiper-horizontal::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .you-will-also-enjoy-swiper .swiper-scrollbar {
+    display: none !important;
+  }
+}
+
+
+.kg-product-faq-image-list img {
+  object-fit: contain;
+  width: 100%;
+  height: 28px;
+  max-width: 100%;
+  display: inline-block;
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+}
+
+
+
+
+@media (min-width: 1024px) {
+  .hero-height{
+    margin-top: 100vh;
+  }
+  
+  .hero-section{
+    height: 100vh !important;
+  }
+}

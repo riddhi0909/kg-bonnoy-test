@@ -1,0 +1,14 @@
+export function SingleJournalContentSection({ post }) {
+  const contentHtml = String(post?.content || "").trim();
+
+  if (!contentHtml) return null;
+
+  return (
+    <div
+      className="mx-auto max-w-[896px] px-6 pb-12 pt-16 [&_a]:underline [&_h1]:[font-family:var(--font-bonnot-serif),serif] [&_h2]:[font-family:var(--font-bonnot-serif),serif] [&_h3]:[font-family:var(--font-bonnot-serif),serif] [&_h4]:[font-family:var(--font-bonnot-serif),serif] [&_h5]:[font-family:var(--font-bonnot-serif),serif] [&_.h0]:[font-family:var(--font-bonnot-serif),serif] [&_.h1]:[font-family:var(--font-bonnot-serif),serif] [&_.h2]:[font-family:var(--font-bonnot-serif),serif] [&_.h3]:[font-family:var(--font-bonnot-serif),serif] [&_.h4]:[font-family:var(--font-bonnot-serif),serif] [&_.h5]:[font-family:var(--font-bonnot-serif),serif] [&_img]:mb-1 [&_img]:border [&_img]:border-[#1212120d] [&_blockquote]:mb-4 [&_blockquote]:inline-block [&_blockquote]:border-0 [&_blockquote]:p-0 [&_blockquote]:text-[16px] [&_blockquote]:font-normal [&_blockquote]:leading-[1.5] [&_blockquote]:tracking-[0] [&_blockquote]:text-[#000d29] [&_blockquote_a]:m-0 [&_blockquote_a]:text-[16px] [&_blockquote_a]:font-normal [&_blockquote_a]:leading-[1.5] [&_blockquote_a]:tracking-[0] [&_blockquote_a]:text-[#000d29] [&_blockquote_a]:underline-offset-[4.8px] [&_blockquote_a]:decoration-[1px] [&_blockquote_a:hover]:text-[#f63] [&_p]:mb-4 [&_p]:text-[16px] [&_p]:font-normal [&_p]:leading-[1.5] [&_p]:tracking-[0] [&_p]:text-[#000d29] [&_p_a]:text-[16px] [&_p_a]:font-normal [&_p_a]:leading-[1.5] [&_p_a]:tracking-[0] [&_p_a]:text-[#000d29] [&_p_a]:underline-offset-[4.8px] [&_p_a:hover]:text-[#f63] [&_h2]:mt-20 [&_h2]:mb-8 [&_h2]:text-[38px] [&_h2]:font-medium [&_h2]:leading-[1.2] [&_h2]:tracking-[0] [&_h2]:text-[#000d29] [&_ul]:list-disc [&_ul]:list-inside [&_ul]:p-0 [&_ol]:list-decimal [&_ol]:pl-8 [&_ol]:text-[rgb(0_17_34_/_75%)] [&_ul_li]:mb-2 [&_ul_li]:text-[16px] [&_ul_li]:font-normal [&_ul_li]:leading-[1.5] [&_ul_li]:tracking-[0] [&_ul_li]:text-[#000d29] [&_h3]:mb-[10px] [&_h3]:text-[18px] [&_h3]:font-medium [&_h3]:leading-[1.5] [&_h3]:tracking-[0] [&_h3]:text-[#000d29] [&_figure.w-richtext-figure-type-video]:relative [&_figure.w-richtext-figure-type-video]:mx-auto [&_figure.w-richtext-figure-type-video]:mb-[30px] [&_figure.w-richtext-figure-type-video]:h-0 [&_figure.w-richtext-figure-type-video]:max-w-[60%] [&_figure.w-richtext-figure-type-video]:pb-[33.7236533958%] [&_figure.w-richtext-figure-type-video>div]:w-full [&_figure.w-richtext-figure-type-video_iframe]:absolute [&_figure.w-richtext-figure-type-video_iframe]:left-0 [&_figure.w-richtext-figure-type-video_iframe]:top-0 [&_figure.w-richtext-figure-type-video_iframe]:h-full [&_figure.w-richtext-figure-type-video_iframe]:w-full [&_figure.w-richtext-figure-type-video_iframe]:border-0"
+      dangerouslySetInnerHTML={{ __html: contentHtml }}
+    />
+  );
+}
+
+export default SingleJournalContentSection;
