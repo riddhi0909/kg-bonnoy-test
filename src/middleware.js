@@ -91,5 +91,10 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image).*)"],
+  matcher: [
+    // Must include `/` explicitly: a single regex like `/((?!…).*)` can skip the
+    // root pathname on some runtimes, leaving no `app/page` and no rewrite to `/fr`.
+    "/",
+    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)",
+  ],
 };
